@@ -9,14 +9,8 @@ our $VERSION = '0.0101';
 use Moo;
 use strictures 2;
 use List::SomeUtils qw(first_index);
-use List::Util qw(shuffle uniq);
-use MIDI::RtMidi::ScorePlayer ();
 use MIDI::Drummer::Tiny ();
-use Music::Scales qw(get_scale_MIDI get_scale_notes);
-use Music::Chord::Note ();
-use Music::Note ();
-use Music::ToRoman ();
-use Music::VoiceGen ();
+use MIDI::RtMidi::ScorePlayer ();
 use Types::Standard qw(ArrayRef Num);
 use namespace::clean;
 
@@ -152,18 +146,14 @@ __END__
 
 =head1 SEE ALSO
 
-L<Moo>
-
 L<List::SomeUtils>
 
-L<Music::Scales>
+L<MIDI::Drummer::Tiny>
 
-L<Music::Chord::Note>
+L<MIDI::RtMidi::ScorePlayer>
 
-L<Music::Note>
+L<Moo>
 
-L<Music::ToRoman>
-
-L<Music::VoiceGen>
+L<Types::Standard>
 
 =cut
