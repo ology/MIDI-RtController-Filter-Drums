@@ -104,7 +104,7 @@ A filter also must return a boolean value. This tells
 L<MIDI::RtController> to continue processing other known filters or
 not.
 
-=head2 drum_tone
+=head2 drums
 
 Play the drums.
 
