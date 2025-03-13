@@ -53,18 +53,18 @@ has rtc => (
     required => 1,
 );
 
-=head2 feedback
+=head2 bars
 
-  $feedback = $rtf->feedback;
-  $rtf->feedback($number);
+  $bars = $rtf->bars;
+  $rtf->bars($number);
 
-The feedback (0-127).
+The number of measures to set for the drummer bars.
 
 Default: C<1>
 
 =cut
 
-has feedback => (
+has bars => (
     is  => 'rw',
     isa => Num,
     default => sub { 1 },
@@ -130,7 +130,7 @@ sub drums ($self, $dt, $event) {
     my $part = $self->_drum_parts($note);
     my $d = MIDI::Drummer::Tiny->new(
         bpm  => $self->bpm,
-        bars => $self->feedback,
+        bars => $self->bars,
     );
     MIDI::RtMidi::ScorePlayer->new(
       device   => $self->rtc->_midi_out,
