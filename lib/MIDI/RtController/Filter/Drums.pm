@@ -11,6 +11,7 @@ use strictures 2;
 use List::SomeUtils qw(first_index);
 use List::Util qw(shuffle uniq);
 use MIDI::RtMidi::ScorePlayer ();
+use MIDI::Drummer::Tiny ();
 use Music::Scales qw(get_scale_MIDI get_scale_notes);
 use Music::Chord::Note ();
 use Music::Note ();
