@@ -1,6 +1,8 @@
 Revision history for MIDI-RtController-Filter-Drums
 
 {{$NEXT}}
+
+0.0101 2025-03-13 10:28:19
   - Add an eg/ test program and find a syntax error.
   - Fix imports and SEE ALSO.
 
