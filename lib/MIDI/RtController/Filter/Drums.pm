@@ -34,7 +34,7 @@ use namespace::clean;
 =head1 DESCRIPTION
 
 C<MIDI::RtController::Filter::Drums> is the collection of
-L<MIDI::RtController> filtersi for the drums.
+L<MIDI::RtController> filters for the drums.
 
 =cut
 
