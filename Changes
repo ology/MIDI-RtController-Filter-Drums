@@ -2,6 +2,7 @@ Revision history for MIDI-RtController-Filter-Drums
 
 {{$NEXT}}
   - Add an eg/ test program and find a syntax error.
+  - Fix imports and SEE ALSO.
 
 0.0100 2025-03-13 09:23:48
   - Mint with Dist::Zilla.
