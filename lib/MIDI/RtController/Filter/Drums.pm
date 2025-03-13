@@ -35,8 +35,8 @@ use namespace::clean;
 
 =head1 DESCRIPTION
 
-C<MIDI::RtController::Filter::Drums> is the collection of
-L<MIDI::RtController> filters for the drums.
+C<MIDI::RtController::Filter::Drums> is the L<MIDI::RtController>
+filter for the drums.
 
 =cut
 
