@@ -16,6 +16,8 @@ use namespace::clean;
 
 =head1 SYNOPSIS
 
+  use curry;
+  use Future::IO::Impl::IOAsync;
   use MIDI::RtController ();
   use MIDI::RtController::Filter::Drums ();
 
@@ -23,7 +25,7 @@ use namespace::clean;
 
   my $rtf = MIDI::RtController::Filter::Drums->new(rtc => $rtc);
 
-  $rtc->add_filter('foo', note_on => $rtf->can('foo'));
+  $rtc->add_filter('drums', note_on => $rtf->curry::drums);
 
   $rtc->run;
 
