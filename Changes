@@ -1,5 +1,7 @@
 Revision history for MIDI-RtController-Filter-Drums
 
 {{$NEXT}}
+
+0.0100 2025-03-13 09:23:48
   - Mint with Dist::Zilla.
   - Ported from https://github.com/ology/Music/blob/master/rtmidi-callback.pl
