@@ -1,0 +1,5 @@
+Revision history for MIDI-RtController-Filter-Drums
+
+{{$NEXT}}
+  - Mint with Dist::Zilla.
+  - Ported from https://github.com/ology/Music/blob/master/rtmidi-callback.pl
