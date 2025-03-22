@@ -89,10 +89,10 @@ has bpm => (
 
 =head1 METHODS
 
-All filter methods must accept the object, a delta-time, and a MIDI
-event ARRAY reference, like:
+All filter methods must accept the object, a MIDI device name, a
+delta-time, and a MIDI event ARRAY reference, like:
 
-  sub drums ($self, $dt, $event) {
+  sub drums ($self, $device, $delta, $event) {
     my ($event_type, $chan, $note, $value) = $event->@*;
     ...
     return $boolean;
@@ -124,7 +124,7 @@ sub _drum_parts ($self, $note) {
     }
     return $part;
 }
-sub drums ($self, $dt, $event) {
+sub drums ($self, $device, $dt, $event) {
     my ($ev, $chan, $note, $vel) = $event->@*;
     return 1 unless $ev eq 'note_on';
     my $part = $self->_drum_parts($note);
@@ -133,7 +133,7 @@ sub drums ($self, $dt, $event) {
         bars => $self->bars,
     );
     MIDI::RtMidi::ScorePlayer->new(
-      device   => $self->rtc->_midi_out,
+      device   => $self->rtc->midi_out,
       score    => $d->score,
       common   => { drummer => $d },
       parts    => [ $part ],
