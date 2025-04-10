@@ -17,7 +17,6 @@ use namespace::clean;
 =head1 SYNOPSIS
 
   use curry;
-  use Future::IO::Impl::IOAsync;
   use MIDI::RtController ();
   use MIDI::RtController::Filter::Drums ();
 
