@@ -6,11 +6,11 @@ use v5.36;
 
 our $VERSION = '0.0104';
 
-use Moo;
 use strictures 2;
 use List::SomeUtils qw(first_index);
 use MIDI::Drummer::Tiny ();
 use MIDI::RtMidi::ScorePlayer ();
+use Moo;
 use Types::Standard qw(ArrayRef Num);
 use namespace::clean;
 
@@ -21,11 +21,14 @@ use namespace::clean;
   use MIDI::RtController ();
   use MIDI::RtController::Filter::Drums ();
 
-  my $rtc = MIDI::RtController->new; # * input/output required
+  my $rtc = MIDI::RtController->new(
+    input  => 'keyboard',
+    output => 'usb',
+  );
 
-  my $rtf = MIDI::RtController::Filter::Drums->new(rtc => $rtc);
+  my $filter = MIDI::RtController::Filter::Drums->new(rtc => $rtc);
 
-  $rtc->add_filter('drums', note_on => $rtf->curry::drums);
+  $rtc->add_filter('drums', note_on => $filter->curry::drums);
 
   $rtc->run;
 
@@ -40,7 +43,7 @@ filter for the drums.
 
 =head2 rtc
 
-  $rtc = $rtf->rtc;
+  $rtc = $filter->rtc;
 
 The required L<MIDI::RtController> instance provided in the
 constructor.
@@ -55,8 +58,8 @@ has rtc => (
 
 =head2 bars
 
-  $bars = $rtf->bars;
-  $rtf->bars($number);
+  $bars = $filter->bars;
+  $filter->bars($number);
 
 The number of measures to set for the drummer bars.
 
@@ -72,8 +75,8 @@ has bars => (
 
 =head2 bpm
 
-  $bpm = $rtf->bpm;
-  $rtf->bpm($number);
+  $bpm = $filter->bpm;
+  $filter->bpm($number);
 
 The beats per minute.
 
@@ -147,6 +150,14 @@ sub drums ($self, $device, $dt, $event) {
 __END__
 
 =head1 SEE ALSO
+
+The F<eg/*.pl> program(s) in this distribution
+
+L<MIDI::RtController::Filter::Tonal>
+
+L<MIDI::RtController::Filter::Math>
+
+L<MIDI::RtController::Filter::CC>
 
 L<List::SomeUtils>
 
