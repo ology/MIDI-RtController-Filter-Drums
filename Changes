@@ -1,6 +1,7 @@
 Revision history for MIDI-RtController-Filter-Drums
 
 {{$NEXT}}
+  - Improve documentation.
 
 0.0104 2025-03-22 14:35:13
   - Refactor for the fresh RtController.
