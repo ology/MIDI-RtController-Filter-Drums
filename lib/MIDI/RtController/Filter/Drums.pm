@@ -11,7 +11,7 @@ use List::SomeUtils qw(first_index);
 use MIDI::Drummer::Tiny ();
 use MIDI::RtMidi::ScorePlayer ();
 use Moo;
-use Types::Standard qw(ArrayRef Num);
+use Types::Standard qw(ArrayRef Num Maybe);
 use namespace::clean;
 
 =head1 SYNOPSIS
@@ -53,6 +53,44 @@ has rtc => (
     is  => 'ro',
     isa => sub { die 'Invalid rtc' unless ref($_[0]) eq 'MIDI::RtController' },
     required => 1,
+);
+
+=head2 value
+
+  $value = $filter->value;
+  $filter->value($number);
+
+Return or set the MIDI event value. This is a generic setting that can
+be used by filters to set or retrieve state. This often a whole number
+between C<0> and C<127>, but can take any number.
+
+Default: C<undef>
+
+=cut
+
+has value => (
+    is      => 'rw',
+    isa     => Maybe[Num],
+    default => undef,
+);
+
+=head2 trigger
+
+  $trigger = $filter->trigger;
+  $filter->trigger($number);
+
+Return or set the trigger. This is a generic setting that
+can be used by filters to set or retrieve state. This often a whole
+number between C<0> and C<127>, but can take any number.
+
+Default: C<undef>
+
+=cut
+
+has trigger => (
+    is      => 'rw',
+    isa     => Maybe[Num],
+    default => undef,
 );
 
 =head2 bars
@@ -108,6 +146,10 @@ not.
 
 Play the drums.
 
+If B<trigger> or B<value> is set, the filter checks those against the
+MIDI event C<note> or C<value>, respectively, to see if the filter
+should be applied.
+
 =cut
 
 sub _drum_parts ($self, $note) {
@@ -127,7 +169,10 @@ sub _drum_parts ($self, $note) {
     return $part;
 }
 sub drums ($self, $device, $dt, $event) {
-    my ($ev, $chan, $note, $vel) = $event->@*;
+    my ($ev, $chan, $note, $val) = $event->@*;
+    return 0 if $self->trigger && $note != $self->trigger;
+    return 0 if $self->value && $val != $self->value;
+
     return 1 unless $ev eq 'note_on';
     my $part = $self->_drum_parts($note);
     my $d = MIDI::Drummer::Tiny->new(
