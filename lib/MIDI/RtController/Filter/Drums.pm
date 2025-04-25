@@ -11,7 +11,7 @@ use List::SomeUtils qw(first_index);
 use MIDI::Drummer::Tiny ();
 use MIDI::RtMidi::ScorePlayer ();
 use Moo;
-use Types::Standard qw(ArrayRef CodeRef Num Maybe);
+use Types::Standard qw(ArrayRef CodeRef HashRef Num Maybe);
 use namespace::clean;
 
 =head1 SYNOPSIS
@@ -32,6 +32,7 @@ use namespace::clean;
   $filter->phrase(\&my_phrase);
   $filter->trigger(99); # trigger the phrase with note 99
   $filter->bars(8);
+  $filter->common({ foo => 42 });
 
   $controller->add_filter('drums', note_on => $filter->curry::drums);
 
@@ -39,7 +40,12 @@ use namespace::clean;
 
   sub my_phrase {
     my (%args) = @_;
-    $args{drummer}->metronome7;
+    if ($args{foo} == 42) {
+      $args{drummer}->metronome7;
+    }
+    else {
+      $args{drummer}->metronome5;
+    }
   }
 
 =head1 DESCRIPTION
@@ -163,6 +169,28 @@ sub _build_phrase {
     };
 }
 
+=head2 common
+
+  $common = $filter->common;
+  $filter->common($common);
+
+These are custom arguments given to the phrase.
+
+A L<MIDI::Tiny::Drummer> instance, named "drummer" is added to this
+list when executing the B<phrase>.
+
+Default: C<{}> (no arguments)
+
+Default: C<120>
+
+=cut
+
+has common => (
+    is  => 'rw',
+    isa => HashRef,
+    default => sub { {} },
+);
+
 =head1 METHODS
 
 All filter methods must accept the object, a MIDI device name, a
@@ -208,10 +236,12 @@ sub drums ($self, $device, $dt, $event) {
         bpm  => $self->bpm,
         bars => $self->bars,
     );
+    my $common = $self->common;
+    $common = { %$common, drummer => $d };
     MIDI::RtMidi::ScorePlayer->new(
       device   => $self->rtc->midi_out,
       score    => $d->score,
-      common   => { drummer => $d },
+      common   => $common,
       parts    => [ $part ],
       sleep    => 0,
       infinite => 0,
