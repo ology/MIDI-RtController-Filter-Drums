@@ -16,6 +16,8 @@ my $rtc = MIDI::RtController->new(
 
 my $rtfd = MIDI::RtController::Filter::Drums->new(rtc => $rtc);
 
+$rtfd->bars(8);
+
 $rtc->add_filter('drums', note_on => $rtfd->curry::drums);
 
 $rtc->run;
