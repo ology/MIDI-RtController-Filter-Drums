@@ -28,9 +28,16 @@ use namespace::clean;
 
   my $filter = MIDI::RtController::Filter::Drums->new(rtc => $rtc);
 
+  $rtfd->phrase(\&my_phrase);
+
   $rtc->add_filter('drums', note_on => $filter->curry::drums);
 
   $rtc->run;
+
+  sub my_phrase {
+    my (%args) = @_;
+    $args{drummer}->metronome7;
+  }
 
 =head1 DESCRIPTION
 
