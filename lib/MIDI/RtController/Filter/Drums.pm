@@ -188,7 +188,7 @@ should be applied.
 
 sub _drum_parts ($self, $note) {
     my $part;
-    if ($note == 99) {
+    if (defined $self->trigger && $note == $self->trigger) {
         $part = $self->phrase;
     }
     else {
@@ -201,9 +201,6 @@ sub _drum_parts ($self, $note) {
 }
 sub drums ($self, $device, $dt, $event) {
     my ($ev, $chan, $note, $val) = $event->@*;
-    return 0 if defined $self->trigger && $note != $self->trigger;
-    return 0 if defined $self->value && $val != $self->value;
-
     my $part = $self->_drum_parts($note);
     my $d = MIDI::Drummer::Tiny->new(
         bpm  => $self->bpm,
