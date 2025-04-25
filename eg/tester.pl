@@ -8,21 +8,21 @@ use MIDI::RtController::Filter::Drums ();
 my $input_name  = shift || 'pad';   # midi controller device
 my $output_name = shift || 'fluid'; # fluidsynth
 
-my $rtc = MIDI::RtController->new(
+my $controller = MIDI::RtController->new(
     input   => $input_name,
     output  => $output_name,
     verbose => 1,
 );
 
-my $rtfd = MIDI::RtController::Filter::Drums->new(rtc => $rtc);
+my $filter = MIDI::RtController::Filter::Drums->new(rtc => $controller);
 
-$rtfd->phrase(\&my_phrase);
+$filter->phrase(\&my_phrase);
 
-$rtfd->bars(8);
+$filter->bars(8);
 
-$rtc->add_filter('drums', note_on => $rtfd->curry::drums);
+$controller->add_filter('drums', note_on => $filter->curry::drums);
 
-$rtc->run;
+$controller->run;
 
 sub my_phrase {
     my (%args) = @_;
