@@ -1,6 +1,8 @@
 Revision history for MIDI-RtController-Filter-Drums
 
 {{$NEXT}}
+
+0.0203 2025-04-25 06:59:38
   - Add the missing bars setting to the eg/tester.pl program.
 
 0.0202 2025-04-25 06:33:21
