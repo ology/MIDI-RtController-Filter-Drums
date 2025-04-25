@@ -1,7 +1,7 @@
 Revision history for MIDI-RtController-Filter-Drums
 
 {{$NEXT}}
-
+  - Add the all-important phrase attribute.
 0.0203 2025-04-25 06:59:38
   - Add the missing bars setting to the eg/tester.pl program.
 
