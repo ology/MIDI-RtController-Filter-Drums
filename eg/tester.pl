@@ -16,9 +16,9 @@ my $controller = MIDI::RtController->new(
 
 my $filter = MIDI::RtController::Filter::Drums->new(rtc => $controller);
 
+$filter->phrase(\&my_phrase);
 $filter->bars(8);
 $filter->trigger(99);
-$filter->phrase(\&my_phrase);
 
 $controller->add_filter('drums', note_on => $filter->curry::drums);
 
