@@ -9,8 +9,8 @@ my $input_name  = shift || 'pad';   # midi controller device
 my $output_name = shift || 'fluid'; # fluidsynth
 
 my $rtc = MIDI::RtController->new(
-    input  => $input_name,
-    output => $output_name,
+    input   => $input_name,
+    output  => $output_name,
     verbose => 1,
 );
 
