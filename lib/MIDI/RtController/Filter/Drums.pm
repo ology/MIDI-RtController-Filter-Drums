@@ -4,7 +4,7 @@ package MIDI::RtController::Filter::Drums;
 
 use v5.36;
 
-our $VERSION = '0.0301';
+our $VERSION = '0.0302';
 
 use strictures 2;
 use List::SomeUtils qw(first_index);
