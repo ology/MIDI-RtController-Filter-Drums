@@ -215,7 +215,7 @@ should be applied.
 
 =cut
 
-sub _drum_parts ($self, $note) {
+sub _drum_part ($self, $note) {
     my $part;
     if (defined $self->trigger && $note == $self->trigger) {
         $part = $self->phrase;
@@ -230,7 +230,7 @@ sub _drum_parts ($self, $note) {
 }
 sub drums ($self, $device, $dt, $event) {
     my ($ev, $chan, $note, $val) = $event->@*;
-    my $part = $self->_drum_parts($note);
+    my $part = $self->_drum_part($note);
     my $d = MIDI::Drummer::Tiny->new(
         bpm  => $self->bpm,
         bars => $self->bars,
