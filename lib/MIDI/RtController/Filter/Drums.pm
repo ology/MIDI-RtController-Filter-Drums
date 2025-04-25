@@ -30,6 +30,8 @@ use namespace::clean;
   my $filter = MIDI::RtController::Filter::Drums->new(rtc => $controller);
 
   $filter->phrase(\&my_phrase);
+  $filter->trigger(99); # trigger the phrase
+  $filter->bars(8);
 
   $controller->add_filter('drums', note_on => $filter->curry::drums);
 
