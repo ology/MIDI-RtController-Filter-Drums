@@ -17,6 +17,7 @@ use namespace::clean;
 =head1 SYNOPSIS
 
   use curry;
+  use Future::IO::Impl::IOAsync;
   use MIDI::RtController ();
   use MIDI::RtController::Filter::Drums ();
 
@@ -174,7 +175,6 @@ sub drums ($self, $device, $dt, $event) {
     return 0 if defined $self->trigger && $note != $self->trigger;
     return 0 if defined $self->value && $val != $self->value;
 
-    return 1 unless $ev eq 'note_on';
     my $part = $self->_drum_parts($note);
     my $d = MIDI::Drummer::Tiny->new(
         bpm  => $self->bpm,
