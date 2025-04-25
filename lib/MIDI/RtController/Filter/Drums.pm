@@ -21,7 +21,7 @@ use namespace::clean;
   use MIDI::RtController ();
   use MIDI::RtController::Filter::Drums ();
 
-  my $rtc = MIDI::RtController->new(
+  my $controller = MIDI::RtController->new(
     input   => 'keyboard',
     output  => 'usb',
     verbose => 1,
@@ -29,11 +29,11 @@ use namespace::clean;
 
   my $filter = MIDI::RtController::Filter::Drums->new(rtc => $rtc);
 
-  $rtfd->phrase(\&my_phrase);
+  $filter->phrase(\&my_phrase);
 
-  $rtc->add_filter('drums', note_on => $filter->curry::drums);
+  $controller->add_filter('drums', note_on => $filter->curry::drums);
 
-  $rtc->run;
+  $controller->run;
 
   sub my_phrase {
     my (%args) = @_;
