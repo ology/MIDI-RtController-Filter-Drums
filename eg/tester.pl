@@ -1,9 +1,5 @@
 #!/usr/bin/env perl
 
-# PERL_FUTURE_DEBUG=1 perl eg/tester.pl
-
-use v5.36;
-
 use curry;
 use Future::IO::Impl::IOAsync;
 use MIDI::RtController ();
