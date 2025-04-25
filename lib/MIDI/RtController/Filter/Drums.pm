@@ -34,7 +34,8 @@ use namespace::clean;
 =head1 DESCRIPTION
 
 C<MIDI::RtController::Filter::Drums> is the L<MIDI::RtController>
-filter for the drums.
+filter for the drums. It is meant to be an example of how to make a
+drum filter and uses the 4/4 metronome for this.
 
 =cut
 
