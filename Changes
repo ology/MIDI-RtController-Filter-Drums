@@ -1,6 +1,7 @@
 Revision history for MIDI-RtController-Filter-Drums
 
 {{$NEXT}}
+  - Use the trigger properly.
   - Improve documentation.
 
 0.0300 2025-04-25 11:52:55
