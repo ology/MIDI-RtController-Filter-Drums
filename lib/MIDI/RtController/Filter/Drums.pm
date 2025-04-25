@@ -41,7 +41,7 @@ use namespace::clean;
   sub my_phrase {
     my (%args) = @_;
     if ($args{foo} == 42) {
-      $args{drummer}->metronome7;
+      $args{drummer}->metronome4;
     }
     else {
       $args{drummer}->metronome5;
