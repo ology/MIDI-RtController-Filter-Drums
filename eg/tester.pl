@@ -16,6 +16,12 @@ my $rtc = MIDI::RtController->new(
 
 my $rtfd = MIDI::RtController::Filter::Drums->new(rtc => $rtc);
 
+sub my_phrase {
+    my (%args) = @_;
+    $args{drummer}->metronome3;
+}
+$rtfd->phrase(\&my_phrase);
+
 $rtfd->bars(8);
 
 $rtc->add_filter('drums', note_on => $rtfd->curry::drums);
