@@ -19,7 +19,7 @@ my $rtc = MIDI::RtController->new(
 
 my $rtfd = MIDI::RtController::Filter::Drums->new(rtc => $rtc);
 
-add_filters('drums', $rtfd->curry::drums, 0);
+add_filters('drums', $rtfd->curry::drums, 1);
 
 $rtc->run;
 
