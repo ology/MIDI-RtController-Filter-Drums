@@ -22,8 +22,9 @@ use namespace::clean;
   use MIDI::RtController::Filter::Drums ();
 
   my $rtc = MIDI::RtController->new(
-    input  => 'keyboard',
-    output => 'usb',
+    input   => 'keyboard',
+    output  => 'usb',
+    verbose => 1,
   );
 
   my $filter = MIDI::RtController::Filter::Drums->new(rtc => $rtc);
