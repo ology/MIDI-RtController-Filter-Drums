@@ -15,11 +15,6 @@ my $rtc = MIDI::RtController->new(
 
 my $rtfd = MIDI::RtController::Filter::Drums->new(rtc => $rtc);
 
-add_filters('drums', $rtfd->curry::drums, 0);
+$rtc->add_filter('drums', [qw(note_on note_off)], $rtfd->curry::drums);
 
 $rtc->run;
-
-sub add_filters ($name, $coderef, $types) {
-    $types ||= [qw(note_on note_off)];
-    $rtc->add_filter($name, $types, $coderef);
-}
