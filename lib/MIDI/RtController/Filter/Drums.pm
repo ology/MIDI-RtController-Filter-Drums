@@ -17,7 +17,7 @@ use namespace::clean;
 =head1 SYNOPSIS
 
   use curry;
-  use Future::IO::Impl::IOAsync;
+  use Future::IO::Impl::IOAsync; # because ScorePlayer is async
   use MIDI::RtController ();
   use MIDI::RtController::Filter::Drums ();
 
