@@ -27,7 +27,7 @@ use namespace::clean;
     verbose => 1,
   );
 
-  my $filter = MIDI::RtController::Filter::Drums->new(rtc => $rtc);
+  my $filter = MIDI::RtController::Filter::Drums->new(rtc => $controller);
 
   $filter->phrase(\&my_phrase);
 
@@ -52,7 +52,7 @@ drum filter and uses the 4/4 metronome for this.
 
 =head2 rtc
 
-  $rtc = $filter->rtc;
+  $controller = $filter->rtc;
 
 The required L<MIDI::RtController> instance provided in the
 constructor.
@@ -61,7 +61,7 @@ constructor.
 
 has rtc => (
     is  => 'ro',
-    isa => sub { die 'Invalid rtc' unless ref($_[0]) eq 'MIDI::RtController' },
+    isa => sub { die 'Invalid controller' unless ref($_[0]) eq 'MIDI::RtController' },
     required => 1,
 );
 
