@@ -227,15 +227,17 @@ __END__
 
 The F<eg/*.pl> program(s) in this distribution
 
-L<MIDI::RtController::Filter::Tonal>
+L<MIDI::RtController::Filter::Tonal> - Related module
 
-L<MIDI::RtController::Filter::Math>
+L<MIDI::RtController::Filter::Math> - Related module
 
-L<MIDI::RtController::Filter::CC>
+L<MIDI::RtController::Filter::CC> - Related module
 
 L<List::SomeUtils>
 
 L<MIDI::Drummer::Tiny>
+
+L<MIDI::RtController>
 
 L<MIDI::RtMidi::ScorePlayer>
 
