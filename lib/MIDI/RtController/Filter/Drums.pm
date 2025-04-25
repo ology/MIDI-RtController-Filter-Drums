@@ -11,7 +11,7 @@ use List::SomeUtils qw(first_index);
 use MIDI::Drummer::Tiny ();
 use MIDI::RtMidi::ScorePlayer ();
 use Moo;
-use Types::Standard qw(ArrayRef Num Maybe);
+use Types::Standard qw(ArrayRef CodeRef Num Maybe);
 use namespace::clean;
 
 =head1 SYNOPSIS
@@ -129,6 +129,30 @@ has bpm => (
     default => sub { 120 },
 );
 
+=head2 phrase
+
+  $filter->phrase(\&your_phrase);
+  $part = $filter->phrase();
+
+The subroutine given to this attribute takes a collection of named
+parameters to do its thing. Primarily, this is a
+L<MIDI::Drummer::Tiny> instance named "drummer."
+
+=cut
+
+has phrase => (
+    is      => 'rw',
+    isa     => CodeRef,
+    builder => 1,
+);
+
+sub _build_phrase {
+    return sub {
+        my (%args) = @_;
+        $args{drummer}->metronome4;
+    };
+}
+
 =head1 METHODS
 
 All filter methods must accept the object, a MIDI device name, a
@@ -157,10 +181,7 @@ should be applied.
 sub _drum_parts ($self, $note) {
     my $part;
     if ($note == 99) {
-        $part = sub {
-            my (%args) = @_;
-            $args{drummer}->metronome4;
-        };
+        $part = $self->phrase;
     }
     else {
         $part = sub {
