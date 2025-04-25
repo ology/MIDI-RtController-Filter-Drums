@@ -1,6 +1,7 @@
 Revision history for MIDI-RtController-Filter-Drums
 
 {{$NEXT}}
+  - OCD grammar.
 
 0.0303 2025-04-25 14:50:20
   - Improve documentation.
