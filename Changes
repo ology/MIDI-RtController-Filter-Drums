@@ -1,6 +1,7 @@
 Revision history for MIDI-RtController-Filter-Drums
 
 {{$NEXT}}
+  - Add the common attribute.
 
 0.0301 2025-04-25 12:10:36
   - Use the trigger properly.
