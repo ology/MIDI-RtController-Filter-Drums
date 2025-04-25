@@ -10,6 +10,7 @@ my $output_name = shift || 'fluid';    # fluidsynth
 my $rtc = MIDI::RtController->new(
     input  => $input_name,
     output => $output_name,
+    verbose => 1,
 );
 
 my $rtfd = MIDI::RtController::Filter::Drums->new(rtc => $rtc);
