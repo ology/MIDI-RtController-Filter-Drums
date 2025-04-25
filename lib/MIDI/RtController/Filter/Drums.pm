@@ -1,6 +1,6 @@
 package MIDI::RtController::Filter::Drums;
 
-# ABSTRACT: RtController drum filters
+# ABSTRACT: Generic RtController drum filter
 
 use v5.36;
 
@@ -50,9 +50,8 @@ use namespace::clean;
 
 =head1 DESCRIPTION
 
-C<MIDI::RtController::Filter::Drums> is the L<MIDI::RtController>
-filter for the drums. It is meant to be an example of how to make a
-drum filter and uses the 4/4 metronome for this.
+C<MIDI::RtController::Filter::Drums> is a generic
+L<MIDI::RtController> drum filter.
 
 =cut
 
