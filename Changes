@@ -1,6 +1,7 @@
 Revision history for MIDI-RtController-Filter-Drums
 
 {{$NEXT}}
+  - Only trigger on a note_on or CC message.
 
 0.0304 2025-04-26 10:46:14
   - OCD grammar.
