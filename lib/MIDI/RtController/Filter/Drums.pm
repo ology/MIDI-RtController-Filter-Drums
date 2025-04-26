@@ -11,8 +11,11 @@ use List::SomeUtils qw(first_index);
 use MIDI::Drummer::Tiny ();
 use MIDI::RtMidi::ScorePlayer ();
 use Moo;
-use Types::Standard qw(ArrayRef CodeRef HashRef Num Maybe);
+use Types::Common::Numeric qw(PositiveInt);
+use Types::Standard qw(CodeRef HashRef);
 use namespace::clean;
+
+extends 'MIDI::RtController::Filter';
 
 =head1 SYNOPSIS
 
@@ -63,59 +66,6 @@ L<MIDI::RtController> drum filter.
 
 =head1 ATTRIBUTES
 
-=head2 rtc
-
-  $controller = $filter->rtc;
-
-The required L<MIDI::RtController> instance provided in the
-constructor.
-
-=cut
-
-has rtc => (
-    is  => 'ro',
-    isa => sub { die 'Invalid controller' unless ref($_[0]) eq 'MIDI::RtController' },
-    required => 1,
-);
-
-=head2 value
-
-  $value = $filter->value;
-  $filter->value($number);
-
-Return or set the MIDI event value. This is a generic setting that can
-be used by filters to set or retrieve state. This often a whole number
-between C<0> and C<127>, but can take any number.
-
-Default: C<undef>
-
-=cut
-
-has value => (
-    is      => 'rw',
-    isa     => Maybe[Num],
-    default => undef,
-);
-
-=head2 trigger
-
-  $trigger = $filter->trigger;
-  $filter->trigger($number);
-
-Return or set the trigger. This is a generic setting that
-can be used by filters to set or retrieve state. This often a whole
-number between C<0> and C<127>, but can take any number.
-
-Default: C<undef>
-
-=cut
-
-has trigger => (
-    is      => 'rw',
-    isa     => Maybe[Num],
-    default => undef,
-);
-
 =head2 bars
 
   $bars = $filter->bars;
@@ -129,7 +79,7 @@ Default: C<1>
 
 has bars => (
     is  => 'rw',
-    isa => Num,
+    isa => PositiveInt,
     default => sub { 1 },
 );
 
@@ -146,7 +96,7 @@ Default: C<120>
 
 has bpm => (
     is  => 'rw',
-    isa => Num,
+    isa => PositiveInt,
     default => sub { 120 },
 );
 
