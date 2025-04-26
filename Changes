@@ -1,6 +1,8 @@
 Revision history for MIDI-RtController-Filter-Drums
 
 {{$NEXT}}
+
+0.0400 2025-04-26 15:47:22
   - Use the parent filter class now.
 
 0.0305 2025-04-26 12:28:19
