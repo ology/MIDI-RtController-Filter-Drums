@@ -230,13 +230,20 @@ sub _drum_part ($self, $note) {
 }
 sub drums ($self, $device, $dt, $event) {
     my ($ev, $chan, $note, $val) = $event->@*;
+
+    return 0 unless $ev eq 'note_on'
+        || ($ev eq 'control_change' && defined $self->value && $val == $self->value);
+
     my $part = $self->_drum_part($note);
+
     my $d = MIDI::Drummer::Tiny->new(
         bpm  => $self->bpm,
         bars => $self->bars,
     );
+
     my $common = $self->common;
     $common = { %$common, drummer => $d };
+
     MIDI::RtMidi::ScorePlayer->new(
       device   => $self->rtc->midi_out,
       score    => $d->score,
@@ -245,6 +252,7 @@ sub drums ($self, $device, $dt, $event) {
       sleep    => 0,
       infinite => 0,
     )->play_async->retain;
+
     return 1;
 }
 
