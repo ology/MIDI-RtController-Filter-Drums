@@ -29,10 +29,16 @@ use namespace::clean;
 
   my $filter = MIDI::RtController::Filter::Drums->new(rtc => $controller);
 
-  $filter->phrase(\&my_phrase);
-  $filter->trigger(99); # trigger the phrase with note 99
   $filter->bars(8);
+  $filter->phrase(\&my_phrase);
   $filter->common({ foo => 42 });
+
+  # for triggering with a note_on message:
+  $filter->trigger(99); # note 99 (D#7/Eb7)
+
+  # or for triggering with a control_change:
+  # $filter->trigger(25); # CC 25
+  # $filter->value(127);
 
   $controller->add_filter('drums', note_on => $filter->curry::drums);
 
