@@ -219,11 +219,7 @@ __END__
 
 The F<eg/*.pl> program(s) in this distribution
 
-L<MIDI::RtController::Filter::Tonal> - Related module
-
-L<MIDI::RtController::Filter::Math> - Related module
-
-L<MIDI::RtController::Filter::CC> - Related module
+L<MIDI::RtController::Filter>
 
 L<List::SomeUtils>
 
