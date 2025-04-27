@@ -148,19 +148,6 @@ has common => (
 
 =head1 METHODS
 
-All filter methods must accept the object, a MIDI device name, a
-delta-time, and a MIDI event ARRAY reference, like:
-
-  sub drums ($self, $device, $delta, $event) {
-    my ($event_type, $chan, $note, $value) = $event->@*;
-    ...
-    return $boolean;
-  }
-
-A filter also must return a boolean value. This tells
-L<MIDI::RtController> to continue processing other known filters or
-not.
-
 =head2 drums
 
 Play the drums.
