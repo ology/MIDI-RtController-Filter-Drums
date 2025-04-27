@@ -209,7 +209,7 @@ sub drums ($self, $device, $dt, $event) {
       infinite => 0,
     )->play_async->retain;
 
-    return 1;
+    return $self->continue;
 }
 
 1;
