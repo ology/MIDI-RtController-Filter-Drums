@@ -235,6 +235,8 @@ L<MIDI::RtMidi::ScorePlayer>
 
 L<Moo>
 
+L<Types::Common::Numeric>
+
 L<Types::Standard>
 
 =cut
